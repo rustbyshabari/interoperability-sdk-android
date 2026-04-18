@@ -6,36 +6,28 @@ Run SDK
 
 Usage
 
-    setContent {
-        var currentPage by remember { mutableIntStateOf(1) }
-        var resultState by remember { mutableStateOf<FilterResponse?>(null) }
-        var isLoading by remember { mutableStateOf(false) }
-    
-        val totalPages = resultState?.pagination?.totalPages?.toInt() ?: 1
-    
-        LaunchedEffect(currentPage) {
-            isLoading = true
-            try {
-                val params = FilterParams(
-                    null, null, null, null, 
-                    currentPage.toString(), 
-                    null
-                )
-    
-                // Execute the Rust JNI call on the IO dispatcher
-                val response = withContext(Dispatchers.IO) {
-                    fetchInteroperability(params)
-                }
-                resultState = response
-            } catch (e: Exception) {
-                // Handle error (e.g., show a Snackbar)
-            } finally {
-                isLoading = false
+        import kotlinx.coroutines.Dispatchers
+        import kotlinx.coroutines.withContext
+        import rust.interop.bridge.* // Your JNI/UniFFI generated code
+        
+        /**
+         * Pure logic to fetch data from the Rust bridge.
+         * Returns the response or throws an exception.
+         */
+        suspend fun fetchDataFromRust(page: Int): FilterResponse {
+            // 1. Prepare parameters
+            val params = FilterParams(
+                null, null, null, null, 
+                page.toString(), 
+                null
+            )
+        
+            // 2. Switch to IO thread for the JNI/Rust call
+            return withContext(Dispatchers.IO) {
+                // 3. Call the bridge function
+                fetchInteroperability(params)
             }
         }
-        
-        // UI logic for displaying resultState and paging goes here
-    }
 
 Screenshot
 <img width="467" height="798" alt="Screenshot (196)" src="https://github.com/user-attachments/assets/30fde361-6638-47d1-ae32-1fc14a028672" />
