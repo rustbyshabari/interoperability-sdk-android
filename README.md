@@ -1,4 +1,4 @@
-# BHILANI Interoperability by kantini, chanchali
+# BHILANI Interop SDK Suite by kantini, chanchali
 
 Run SDK
 
@@ -35,4 +35,4 @@ Screenshot (Page 1)
 Screenshot (Page 4)
 <img width="1080" height="2340" alt="android2" src="https://github.com/user-attachments/assets/a3f53810-c943-4aad-8105-97674b6016fa" />
 
-**@AIAmitSuri, Co-creator/Co-founder (🙏 Mata Shabri 🙏)**
+**🙏 Mata Shabri 🙏**
