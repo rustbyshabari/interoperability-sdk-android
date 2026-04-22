@@ -1,4 +1,4 @@
-package car1
+package rust.android.rustjni
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
